@@ -269,6 +269,8 @@ var choices = [];
 var tags = [];
 content();
 function content() {
+    score = 0;
+    numCorrect = 0;
     scorestr = "Score: " + score;
     $(".score").html(scorestr);
     $.ajax( {
@@ -277,7 +279,8 @@ function content() {
         success:function(data) {
             data = JSON.parse(data);
             tags = data.tags;
-            numOfTags = data.numOfTags;
+            numOfTags = (data.numOfTags - 1);
+            console.log(numOfTags);
             choices = data.choices;
             console.log(choices.length);
             htmlStr = "";
@@ -303,16 +306,6 @@ $(document).ready(function() {
     });
 });
 
-Array.prototype.remove = function() {
-    var what, a = arguments, L = a.length, ax;
-    while (L && this.length) {
-        what = a[--L];
-        while ((ax = this.indexOf(what)) !== -1) {
-            this.splice(ax, 1);
-        }
-    }
-    return this;
-};
 
 $(document).on('click','.tag1',function(){
     console.log($(".tag1").css('background-color'));
@@ -322,7 +315,7 @@ $(document).on('click','.tag1',function(){
         score += 1;
         $(".score").html(score);
         numCorrect += 1;
-        choices.remove($(".tag1").text());
+
     } else if ($(".tag1").css('background-color') == 'rgb(221, 221, 221)'){
         $(".tag1").css({'background-color': 'red'});
     }
@@ -337,7 +330,7 @@ $(document).on('click','.tag1',function(){
         score += 1;
         $(".score").html(score);
         numCorrect += 1;
-        choices.remove($(".tag2").text());
+
     } else if ($(".tag2").css('background-color') == 'rgb(221, 221, 221)'){
         $(".tag2").css({'background-color': 'red'});
     }
@@ -352,7 +345,7 @@ $(document).on('click','.tag1',function(){
         score += 1;
         $(".score").html(score);
         numCorrect += 1;
-        choices.remove($(".tag3").text());
+
     } else if ($(".tag3").css('background-color') == 'rgb(221, 221, 221)'){
         $(".tag3").css({'background-color': 'red'});
     }
@@ -367,7 +360,7 @@ $(document).on('click','.tag1',function(){
         score += 1;
         $(".score").html(score);
         numCorrect += 1;
-        choices.remove($(".tag4").text());
+
     } else if ($(".tag4").css('background-color') == 'rgb(221, 221, 221)'){
         $(".tag4").css({'background-color': 'red'});
     }
@@ -382,7 +375,7 @@ $(document).on('click','.tag1',function(){
         score += 1;
         $(".score").html(score);
         numCorrect += 1;
-        choices.remove($(".tag5").text());
+
     } else if ($(".tag5").css('background-color') == 'rgb(221, 221, 221)'){
         $(".tag5").css({'background-color': 'red'});
     }
@@ -397,7 +390,7 @@ $(document).on('click','.tag1',function(){
         score += 1;
         $(".score").html(score);
         numCorrect += 1;
-        choices.remove($(".tag6").text());
+
     } else if ($(".tag6").css('background-color') == 'rgb(221, 221, 221)'){
         $(".tag6").css({'background-color': 'red'});
     }
@@ -412,7 +405,7 @@ $(document).on('click','.tag1',function(){
         score += 1;
         $(".score").html(score);
         numCorrect += 1;
-        choices.remove($(".tag7").text());
+
     } else if ($(".tag7").css('background-color') == 'rgb(221, 221, 221)'){
         $(".tag7").css({'background-color': 'red'});
     }
@@ -427,7 +420,7 @@ $(document).on('click','.tag1',function(){
         score += 1;
         $(".score").html(score);
         numCorrect += 1;
-        choices.remove($(".tag8").text());
+
     } else if ($(".tag8").css('background-color') == 'rgb(221, 221, 221)'){
         $(".tag8").css({'background-color': 'red'});
     }
@@ -441,8 +434,7 @@ $(document).on('click','.tag1',function(){
         $(".tag9").css({'background-color': 'green'});
         score += 1;
         $(".score").html(score);
-        numCorrect += 1;
-        choices.remove($(".tag9").text());
+
     } else if ($(".tag9").css('background-color') == 'rgb(221, 221, 221)'){
         $(".tag9").css({'background-color': 'red'});
     }
@@ -457,7 +449,7 @@ $(document).on('click','.tag1',function(){
         score += 1;
         $(".score").html(score);
         numCorrect += 1;
-        choices.remove($(".tag10").text());
+
     } else if ($(".tag10").css('background-color') == 'rgb(221, 221, 221)'){
         $(".tag10").css({'background-color': 'red'});
     }
@@ -472,7 +464,7 @@ $(document).on('click','.tag1',function(){
         score += 1;
         $(".score").html(score);
         numCorrect += 1;
-        choices.remove($(".tag11").text());
+
     } else if ($(".tag11").css('background-color') == 'rgb(221, 221, 221)'){
         $(".tag2").css({'background-color': 'red'});
     }
@@ -487,7 +479,7 @@ $(document).on('click','.tag1',function(){
         score += 1;
         $(".score").html(score);
         numCorrect += 1;
-        choices.remove($(".tag12").text());
+
     } else if ($(".tag12").css('background-color') == 'rgb(221, 221, 221)'){
         $(".tag12").css({'background-color': 'red'});
     }
