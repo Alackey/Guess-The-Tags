@@ -1,13 +1,15 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/scores.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
 
 class score(db.Model):
-    rank = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    rank = db.Column(db.Integer, primary_key=False)
     username = db.Column(db.String(80), unique=False)
     score = db.Column(db.Integer, unique=False)
 
@@ -15,6 +17,10 @@ class score(db.Model):
         self.rank = rank
         self.username = username
         self.score = score
+'''
+    def __repr__(self):
+        return '<Rank {0}   Score {1}'.format(self.rank, self.score)
+'''
 
 
 @app.route('/')
@@ -22,11 +28,38 @@ def homepage():
     return render_template('base.html')
 
 
-@app.route('/highscore')
-def highscores():
-    print("true/false")
-    print(request.form)
+@app.route('/highscore', methods=['POST'])
+def highscore():
+    scores = score.query.all()
+
+    playerScore = int(request.form.getlist('score')[0])
+    playerUsername = request.form.getlist('username')[0]
+    lastElem = ""
+
+    scoreLength = len(scores)
+    for e in reversed(scores):
+        lastElem = e
+        break
+
+    if lastElem.score > playerScore:
+        return 'False'
+    else:
+        first = True
+        for s in scores:
+            if s.score <= playerScore:
+                if first:
+                    highest = s
+                    first = False
+                else:
+                    if s.score > highest.score:
+                        highest = s
+                s.rank += 1
+        player = score((highest.rank - 1), playerUsername, playerScore)
+        db.session.add(player)
+    db.session.commit()
+
+    return 'True'
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
