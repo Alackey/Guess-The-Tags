@@ -9,7 +9,7 @@
 <style>
 
     body{
-        background: #262626;
+        background: black;
     }
 
 
@@ -42,7 +42,7 @@
         color: green;
         text-align: center;
         border: 3px solid red;
-
+        line-height: 60vh;
     }
 
     .btn {
@@ -53,17 +53,6 @@
         padding-top: 25px;
         padding-bottom: 25px;
         font-family: "Arial Black";
-    }
-
-    .buttonbtm {
-        padding-top: 25px;
-        padding-bottom: 25px;
-        font-family: "Arial Black";
-    }
-
-    .score {
-        color: white !important;
-        padding-top: 0 !important;
     }
 
     .tag1{
@@ -79,12 +68,18 @@
 
     .tag2{
         position: relative;
-        height: 7vh;
+        height: <svg>
+<defs>
+	<pattern id="wood" patternUnits="userSpaceOnUse" width="400" height="400" >
+		<image xlink:href="http://subtlepatterns.com/patterns/purty_wood.png" width="400" height="400" />
+	</pattern>
+</defs>
+<text y="1.2em">SVG rocks!</text>
+</svg>7vh;
         float: right;
         width: 25vh;
         top: 3px;
         margin: 5px;
-        margin-bottom: 1vh;
         margin-top: 3vh;
     }
 
@@ -182,6 +177,12 @@
         margin: 5px;
     }
 
+    svg {
+    	width: 6em; height: 1.5em;
+    	font: 900 500%/1.2 'Arial Black', sans-serif;
+    }
+
+    text { fill: url(#wood); }
 
 
 </style>
@@ -201,7 +202,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Pictionary</a>
+      <a class="navbar-brand" href="/">Guess the Tags</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -239,173 +240,54 @@
 </nav>
 
 
-<div class="container content">
-    <div class="row">
-        <div class="col-md-6 picture ">
-            <img id="pic" style="color: white" src="">
+        <div class="container content">
+        	<div class="row">
+                <div class="col-md-6  ">
+                    <img style="color: white" src="https://www.petfinder.com/wp-content/uploads/2012/11/140272627-grooming-needs-senior-cat-632x475.jpg">
+                    <!--<svg>
+                        <defs>
+                        	<pattern id="wood" patternUnits="userSpaceOnUse" width="400" height="400" >
+                        		<image xlink:href="http://subtlepatterns.com/patterns/purty_wood.png" width="400" height="400" />
+                        	</pattern>
+                        </defs>
+                    </svg>-->
+                </div>
+                    <div class="col-md-6 tags">
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6 tags">
-        </div>
-    </div>
-</div>
 
 
-<div class="container buttonbtm">
-    <div class="row">
-        <div class ="col-lg-6" style="float: right">
-            <button class=" btn btn-default btn-md">New Game</button>
+        <div class="container button">
+            <div class="row">
+                <div class ="col-lg-12">
+                    <button class="btn btn-default btn-md">New Game</button>
+                </div>
+
+            </div>
+
         </div>
-        <div class ="col-lg-6 "  style="float: left">
-            <h2 class="score"></h2>
-        </div>
-    </div>
-</div>
 
 <script>
-var numCorrect = 0;
-var score = 0;
-var tags = [];
-content();
-function content() {
-    scorestr = "Score: " + score;
-    $(".score").html(scorestr);
-    $.ajax( {
-        url:'/content',
-        type: 'GET',
-        success:function(data) {
-            data = JSON.parse(data);
-            tags = data.tags;
-            htmlStr = "";
-            for (var i = 0; i < 12; i += 2){
-                console.log(data.choices[i]);
-                htmlStr += "<div class='row'><button class='button btn-md tag" + (i + 1) + "'>"
-                + data.choices[i] + "</button><button class='button btn-md tag" + (i + 2) + "'>"
-                + data.choices[i + 1] + "</button> </div>";
-
-            }
-            $('.tags').html(htmlStr);
-            $('#pic').attr("src", data.url);
+tags = [];
+$.ajax( {
+    url:'/content',
+    type: 'GET',
+    success:function(data) {
+        data = JSON.parse(data);
+        console.log(data);
+        console.log(data.choices);
+        console.log(data.choices[0]);
+        tags = data.tags;
+        for (var i = 0; i < 12; i += 2){
+            console.log(i);
+            $('.tags').html(
+                "<div class='row'><button class='button btn-md tag1'>" + data.choices[i] + "</button><button class='button btn-md tag2'>" + data.choices[i + 1] + "</button> </div>"
+            );
         }
-    });
-}
 
-
-
-$(document).ready(function() {
-    $(".buttonbtm").click(function() {
-        score = 0;
-        content();
-    });
-});
-
-$(document).on('click','.tag1',function(){
-    console.log($(".tag1").css('background-color'));
-    if($.inArray($(".tag1").text(), tags) != -1 &&
-            $(".tag1").css('background-color') == 'rgb(221, 221, 221)') {
-        $(".tag1").css({'background-color': 'green'});
-        score += 1;
-        $(".score").html(score);
-    } else if ($(".tag1").css('background-color') == 'rgb(221, 221, 221)'){
-        $(".tag1").css({'background-color': 'red'});
-    }
-});$(document).on('click','.tag2',function(){
-    if($.inArray($(".tag2").text(), tags) != -1 &&
-            $(".tag2").css('background-color') == 'rgb(221, 221, 221)') {
-        $(".tag2").css({'background-color': 'green'});
-        score += 1;
-        $(".score").html(score);
-    } else if ($(".tag2").css('background-color') == 'rgb(221, 221, 221)'){
-        $(".tag2").css({'background-color': 'red'});
-    }
-});$(document).on('click','.tag3',function(){
-    if($.inArray($(".tag3").text(), tags) != -1 &&
-            $(".tag3").css('background-color') == 'rgb(221, 221, 221)') {
-        $(".tag3").css({'background-color': 'green'});
-        score += 1;
-        $(".score").html(score);
-    } else if ($(".tag3").css('background-color') == 'rgb(221, 221, 221)'){
-        $(".tag3").css({'background-color': 'red'});
-    }
-});$(document).on('click','.tag4',function(){
-    if($.inArray($(".tag4").text(), tags) != -1 &&
-            $(".tag4").css('background-color') == 'rgb(221, 221, 221)') {
-        $(".tag4").css({'background-color': 'green'});
-        score += 1;
-        $(".score").html(score);
-    } else if ($(".tag4").css('background-color') == 'rgb(221, 221, 221)'){
-        $(".tag4").css({'background-color': 'red'});
-    }
-});$(document).on('click','.tag5',function(){
-    if($.inArray($(".tag5").text(), tags) != -1 &&
-            $(".tag5").css('background-color') == 'rgb(221, 221, 221)') {
-        $(".tag5").css({'background-color': 'green'});
-        score += 1;
-        $(".score").html(score);
-    } else if ($(".tag5").css('background-color') == 'rgb(221, 221, 221)'){
-        $(".tag5").css({'background-color': 'red'});
-    }
-});$(document).on('click','.tag6',function(){
-    if($.inArray($(".tag6").text(), tags) != -1 &&
-            $(".tag6").css('background-color') == 'rgb(221, 221, 221)') {
-        $(".tag6").css({'background-color': 'green'});
-        score += 1;
-        $(".score").html(score);
-    } else if ($(".tag6").css('background-color') == 'rgb(221, 221, 221)'){
-        $(".tag6").css({'background-color': 'red'});
-    }
-});$(document).on('click','.tag7',function(){
-    if($.inArray($(".tag7").text(), tags) != -1 &&
-            $(".tag7").css('background-color') == 'rgb(221, 221, 221)') {
-        $(".tag7").css({'background-color': 'green'});
-        score += 1;
-        $(".score").html(score);
-    } else if ($(".tag7").css('background-color') == 'rgb(221, 221, 221)'){
-        $(".tag7").css({'background-color': 'red'});
-    }
-});$(document).on('click','.tag8',function(){
-    if($.inArray($(".tag8").text(), tags) != -1 &&
-            $(".tag8").css('background-color') == 'rgb(221, 221, 221)') {
-        $(".tag8").css({'background-color': 'green'});
-        score += 1;
-        $(".score").html(score);
-    } else if ($(".tag8").css('background-color') == 'rgb(221, 221, 221)'){
-        $(".tag8").css({'background-color': 'red'});
-    }
-});$(document).on('click','.tag9',function(){
-    if($.inArray($(".tag9").text(), tags) != -1 &&
-            $(".tag9").css('background-color') == 'rgb(221, 221, 221)') {
-        $(".tag9").css({'background-color': 'green'});
-        score += 1;
-        $(".score").html(score);
-    } else if ($(".tag9").css('background-color') == 'rgb(221, 221, 221)'){
-        $(".tag9").css({'background-color': 'red'});
-    }
-});$(document).on('click','.tag10',function(){
-    if($.inArray($(".tag10").text(), tags) != -1 &&
-            $(".tag10").css('background-color') == 'rgb(221, 221, 221)') {
-        $(".tag10").css({'background-color': 'green'});
-        score += 1;
-        $(".score").html(score);
-    } else if ($(".tag10").css('background-color') == 'rgb(221, 221, 221)'){
-        $(".tag10").css({'background-color': 'red'});
-    }
-});$(document).on('click','.tag11',function(){
-    if($.inArray($(".tag11").text(), tags) != -1 &&
-            $(".tag11").css('background-color') == 'rgb(221, 221, 221)') {
-        $(".tag11").css({'background-color': 'green'});
-        score += 1;
-        $(".score").html(score);
-    } else if ($(".tag11").css('background-color') == 'rgb(221, 221, 221)'){
-        $(".tag2").css({'background-color': 'red'});
-    }
-});$(document).on('click','.tag12',function(){
-    if($.inArray($(".tag12").text(), tags) != -1 &&
-            $(".tag12").css('background-color') == 'rgb(221, 221, 221)') {
-        $(".tag12").css({'background-color': 'green'});
-        score += 1;
-        $(".score").html(score);
-    } else if ($(".tag12").css('background-color') == 'rgb(221, 221, 221)'){
-        $(".tag12").css({'background-color': 'red'});
     }
 });
 </script>
