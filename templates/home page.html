@@ -1,57 +1,31 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Game</title>
+        <title>Home</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">    
 
 <style>
     
+    .content{
+        padding-top: 35vh;
+    }
+
     body{
         background: black;
     }
 
-
-    .new-game{
-        padding-top: 25px;
-        float: right;
-    }
-
-    img{
-        max-width: 100%;
-        height: 75%;
-        vertical-align: middle;
-    }
-
-    .tags{
-        padding-top: 10px;
-    }
-
-    .content{
-        padding-top: 100px;
-    }
-
-    .container{
-        font-family: "Arial Black";
-    }
-
-    .col-md-6{
-        height: 60vh;
-        background-color: white;
-        color: green;
+    h1{
         text-align: center;
-        border: 3px solid red;
-        line-height: 60vh;
-    }
-
-    .btn {
-        float: right;
-    }
-
-    .button{
-        padding-top: 25px;
-        padding-bottom: 25px;
         font-family: "Arial Black";
+        font-size: 60px;
+        padding-bottom: 5%;
+        text-shadow: 2px 2px 8px #FF0000;
+    }
+
+    .centerize{
+        text-align: center;
+        font-family: "Arial Black";   
     }
 
 </style>
@@ -108,30 +82,13 @@
   </div>
 </nav> 
 
+<div class="content">
+    <h1 style="color: white">Welcome to Pictionary!</h1>
 
-        <div class="container content">
-        	<div class="row">
-                <div class="col-md-6 picture ">
-                    <img style="color: white" src="https://www.petfinder.com/wp-content/uploads/2012/11/140272627-grooming-needs-senior-cat-632x475.jpg">                    
-                </div>
-                <div class="col-md-6 tags">
-                    
-                </div>
-            </div>
-        
-            
-        </div>	       
-
-
-        <div class="container button">
-            <div class="row">
-                <div class ="col-lg-12">
-                    <button class="btn btn-default btn-lg">New Game</button>
-                </div>
-                
-            </div>
-            
-        </div>  
+    <div class="centerize">
+        <button class="button btn-lg">Click here to begin playing</button>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>       

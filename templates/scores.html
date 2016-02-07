@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Scores</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">    
+
+<style>
+    
+    body{
+        background: black;
+    }
+
+    .container{
+      padding-top: 10vh;
+      font-family: "Arial Black";
+      font-size: 15px;
+      font-color: black;
+    }
+
+   .one{
+        border: 3px solid red;
+        background-color: white;
+        padding-top: 20vh;
+    }
+
+
+    .two{
+        border: 3px solid red;
+        background-color: white;
+        padding-top: 20vh;
+    }
+
+
+    .topscores{
+       font-color: black;
+       text-shadow: 2px 2px 8px #FF0000;
+       top: 10vh;
+       position: fixed;
+       overflow: right;
+       left: 43%;
+    }
+
+    .time{
+       font-color: black;
+       text-shadow: 2px 2px 8px #FF0000;
+       position: fixed;
+       top: 43vh;
+       left: 43%;
+       
+    }
+    
+    .list{
+       padding: 0;
+       margin: 0;
+       text-align: center;
+
+    }
+
+    .list li {
+      padding: 0;
+      margin: 0;
+    }
+
+</style>
+
+	</head>
+
+    <body>
+      
+<!--NAVBAR PLACEHOLDER-->
+        <nav class="navbar navbar-inverse navbar-fixed-top" >
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Pictionary</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Tutorial </a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Timer Mode</a></li>
+            <li><a href="#">Highscore Mode</a></li>
+            <li><a href="#">Challenge Mode</a></li>
+            <li><a href="#">Multiplayer Mode</a></li>
+            <li><a href="#">Tag Matching Mode</a></li>
+<!--            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li> -->
+          </ul>
+        </li>
+         <li><a href="#">Scores </a></li>
+         <li><a href="#">About </a></li>
+      </ul>
+
+
+<!--      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+-->      
+    </div><!-- /.navbar-collapse -->
+  </div>
+</nav> 
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 one">
+      <h1 class="topscores">Top Scores</h1>
+        <div class="row rowscores">
+          <div class="col-sm-3">
+            <ol class="list">
+              <li>Username 500</li>
+              <li>Username 400</li>
+              <li>Username 300</li>
+              <li>Username 200</li>
+              <li>Username 100</li>
+            </ol>
+          </div>
+          <div class="col-sm-3">
+            <ol class="list">
+              <li>Username 500</li>
+              <li>Username 400</li>
+              <li>Username 300</li>
+              <li>Username 200</li>
+              <li>Username 100</li>
+            </ol>
+          </div>
+          <div class="col-sm-3">
+            <ol class="list">
+              <li>Username 500</li>
+              <li>Username 400</li>
+              <li>Username 300</li>
+              <li>Username 200</li>
+              <li>Username 100</li>
+            </ol>
+          </div>
+          <div class="col-sm-3">
+            <ol class="list">
+              <li>Username 500</li>
+              <li>Username 400</li>
+              <li>Username 300</li>
+              <li>Username 200</li>
+              <li>Username 100</li>
+            </ol>
+        </div>
+    </div>
+  </div>
+</div>
+  <div class="row">
+    <div class="col-md-12 two">
+      <h1 class="time">Best Times</h1>
+<div class="row rowscores">
+          <div class="col-sm-3">
+            <ol class="list">
+              <li>Username 500</li>
+              <li>Username 400</li>
+              <li>Username 300</li>
+              <li>Username 200</li>
+              <li>Username 100</li>
+            </ol>
+          </div>
+          <div class="col-sm-3">
+            <ol class="list">
+              <li>Username 500</li>
+              <li>Username 400</li>
+              <li>Username 300</li>
+              <li>Username 200</li>
+              <li>Username 100</li>
+            </ol>
+          </div>
+          <div class="col-sm-3">
+            <ol class="list">
+              <li>Username 500</li>
+              <li>Username 400</li>
+              <li>Username 300</li>
+              <li>Username 200</li>
+              <li>Username 100</li>
+            </ol>
+          </div>
+          <div class="col-sm-3">
+            <ol class="list">
+              <li>Username 500</li>
+              <li>Username 400</li>
+              <li>Username 300</li>
+              <li>Username 200</li>
+              <li>Username 100</li>
+            </ol>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>       
+    </body>
+</html>
