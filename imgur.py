@@ -88,6 +88,6 @@ def getImages():
             images.append(img.link)
     return images
 
-items = getImages()
+#items = getImages()
 #for item in items:
-    #print(item)
+   # print(item)

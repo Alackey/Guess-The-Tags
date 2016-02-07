@@ -96,21 +96,21 @@
                 <div class="col-sm-6">Tags</div>
         </div>	       
 
-
- <script>
+	
+<script>
 function changeImage() {
     
-	$.ajax({
-   url: "clarifai.py",
+$.ajax({
+   url: "/test",
+   type: "GET",
    success: function(response){
-     var image = document.getElementById('Picture');
-	 dataType: "text"
-	 src = result;
+     $("#Picture").attr("src", response);
    }
 });
 }
 	
-</script>      
+</script> 
+     
 <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>       
     </body>
