@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, json
 from flask_sqlalchemy import SQLAlchemy
-import imgur
 import clarifaiapp
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/scores.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
@@ -22,16 +22,13 @@ class score(db.Model):
     def __repr__(self):
         return '<Rank {0}   Score {1}'.format(self.rank, self.score)
 '''
-@app.route('/test')
-def randImage():
-    image = imgur.getImages()
-    print(image)
 
-    i = random.randint(0,10)
-    print(image[i])
-    tags = clarifaiapp.getTags(str(image[i]))
-    print(tags)
-    return image[i]
+
+@app.route('/content')
+def content():
+    imgDetails = clarifaiapp.getContent()
+    print(imgDetails)
+    return json.dumps(imgDetails)
 
 
 @app.route('/')

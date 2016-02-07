@@ -1,25 +1,31 @@
 from clarifai.client import ClarifaiApi
+from random import randint
 import imgur
-import json
-import pprint
+
 clarifai_api = ClarifaiApi()  # assumes environment variables are set.
-URLArray = imgur.getImages()
-imageURL = URLArray[0]
-result = clarifai_api.tag_image_urls(imageURL)
 
 
+def getContent():
+    # Get Tags
+    URLArray = imgur.getImages()
 
-def writeToFile(result):
-    with open('data.txt', 'w') as outfile:
-        json.dump(result, outfile)
-    outfile.close()
-    
-def getTags(result):
-    
-    tags = result["results"][0]["result"]["tag"]["classes"]
-    
-    return tags
-#pprint.pprint(result)
-#pprint.pprint(result["results"][0]["result"]["tag"]["classes"])
-#getTags(result)
+    result1 = clarifai_api.tag_image_urls(URLArray[0]['url'])
+    result2 = clarifai_api.tag_image_urls(URLArray[1]['url'])
+    print('for loop')
+    tags = []
+    for i in range(0, 12):
+        rand = randint(0, 1)
+        if rand == 0:
+            tags.append(result1["results"][0]["result"]["tag"]["classes"][i])
+        else:
+            tags.append(result2["results"][0]["result"]["tag"]["classes"][i])
 
+    imgDetails = {
+        'url': URLArray[0]['url'],
+        'tags': result1["results"][0]["result"]["tag"]["classes"],
+        'choices': tags,
+        'width': URLArray[0]['width'],
+        'height': URLArray[0]['height']
+    }
+
+    return imgDetails

@@ -62,15 +62,19 @@ def getSearchImages(query):
     items = client.gallery_search(
         query,
         advanced=None,
-        sort=randomSort,
-        window=randomWindow,
-        page=randomPage
+        sort=randomSort(),
+        window=randomWindow(),
+        page=randomPage()
     )
 
     images = []
     for img in items:
         if isJPG(img):
-            images.append(img.link)
+            images.append({
+                'url': img.link,
+                'width': img.width,
+                'height': img.height}
+            )
     return images
 
 
@@ -78,16 +82,20 @@ def getImages():
     items = client.gallery_search(
         'animal',
         advanced=None,
-        sort=randomSort,
-        window=randomWindow,
-        page=randomPage
+        sort=randomSort(),
+        window=randomWindow(),
+        page=randomPage()
     )
     images = []
     for img in items:
         if isJPG(img):
-            images.append(img.link)
+            images.append({
+                'url': img.link,
+                'width': img.width,
+                'height': img.height}
+            )
     return images
 
 items = getImages()
 #for item in items:
-    #print(item)
+#    print(item)
