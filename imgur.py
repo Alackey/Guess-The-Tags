@@ -89,5 +89,5 @@ def getImages():
     return images
 
 items = getImages()
-for item in items:
-    print(item)
+#for item in items:
+    #print(item)
