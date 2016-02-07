@@ -112,7 +112,7 @@
         <div class="container content">
         	<div class="row">
                 <div class="col-md-6 picture ">
-                    <img style="color: white" src="https://www.petfinder.com/wp-content/uploads/2012/11/140272627-grooming-needs-senior-cat-632x475.jpg">                    
+                    <img style="color: white" src="https://www.petfinder.com/wp-content/uploads/2012/11/140272627-grooming-needs-senior-cat-632x475.jpg" id="Picture">                    
                 </div>
                 <div class="col-md-6 tags">
                     
@@ -126,13 +126,24 @@
         <div class="container button">
             <div class="row">
                 <div class ="col-lg-12">
-                    <button class="btn btn-default btn-lg">New Game</button>
+                    <button class="btn btn-default btn-lg" onclick=changeImage() >New Game</button>
                 </div>
                 
             </div>
             
         </div>  
-
+<script>
+function changeImage() {
+$.ajax({
+   url: "/test",
+   type: "GET",
+   success: function(response){
+     $("#Picture").attr("src", response);
+   }
+});
+}
+	
+</script> 
 <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>       
     </body>
