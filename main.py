@@ -22,11 +22,11 @@ class score(db.Model):
     def __repr__(self):
         return '<Rank {0}   Score {1}'.format(self.rank, self.score)
 '''
-@app.route('/test')   
+@app.route('/test')
 def randImage():
     image = imgur.getImages()
     print(image)
-    
+
     i = random.randint(0,10)
     print(image[i])
     tags = clarifaiapp.getTags(str(image[i]))
@@ -37,6 +37,11 @@ def randImage():
 @app.route('/')
 def homepage():
     return render_template('home page.html')
+
+
+@app.route('/play')
+def play():
+    return render_template('base.html')
 
 
 @app.route('/scores')
