@@ -14,7 +14,8 @@
     .new-game{
         padding-top: 75px;
         padding-bottom: 25px;
-        padding-left: 1420px;
+        padding-left: 800px;
+		float: left;
     }
 
     .col-sm-6{
@@ -23,6 +24,7 @@
         color: green;
         text-align: center;
         border: 5px solid red;
+		
     }
 
 
@@ -80,17 +82,35 @@
 </nav>
   
        <div class="new-game">
-            <button class="btn btn-default btn-lg">New Game</button>
+            <button align="left" class="btn btn-default btn-lg" id="btn" onclick=changeImage()>New Game</button>
+				
         </div>  
 
         <div class="container">
         	<div class="row">
-                <div class="col-sm-6">Picture</div>
+                <div class="col-sm-6"  >
+				<img src=http://i.imgur.com/6CbxaPc.jpg id="Picture" onclick="changeImage()">
+				
+				</div>
+				
                 <div class="col-sm-6">Tags</div>
         </div>	       
 
 
-       
+ <script>
+function changeImage() {
+    
+	$.ajax({
+   url: "clarifai.py",
+   success: function(response){
+     var image = document.getElementById('Picture');
+	 dataType: "text"
+	 src = result;
+   }
+});
+}
+	
+</script>      
 <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>       
     </body>
