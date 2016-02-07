@@ -25,7 +25,22 @@ class score(db.Model):
 
 @app.route('/')
 def homepage():
-    return render_template('base.html')
+    return render_template('home page.html')
+
+
+@app.route('/scores')
+def scores():
+    return render_template('scores.html')
+
+
+@app.route('/tutorial')
+def tutorial():
+    return render_template('tutorial.html')
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 
 @app.route('/highscore', methods=['POST'])
