@@ -527,6 +527,9 @@ $(document).on('click','.tag1',function(){
 
     } else if ($(".tag12").css('background-color') == 'rgb(221, 221, 221)'){
         $(".tag12").css({'background-color': 'red'});
+        score -= 1;
+        scorestr = "Score: " + score;
+        $(".score").html(score);
     }
     if (numCorrect == numOfTags){
         alert("You won! \nScore: " + score);
