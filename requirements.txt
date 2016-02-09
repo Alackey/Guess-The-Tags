@@ -1,0 +1,6 @@
+Flask=0.10.1
+Flask-SQLAlchemy=2.1
+Pillow=2.3.0
+SQLAlchemy=1.0.11
+imgurpython=1.1.6
+clarifai=0.2

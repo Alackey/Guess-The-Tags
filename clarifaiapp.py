@@ -2,7 +2,10 @@ from clarifai.client import ClarifaiApi
 from random import randint
 import imgur
 
-clarifai_api = ClarifaiApi()  # assumes environment variables are set.
+
+CLARIFAI_APP_ID = "qIhhalvjJu_Rcg6RtAKbi_llpZAjel_e4DYZN1Bn"
+CLARIFAI_APP_SECRET = "RkYlk7ZxgelgwIuh8Liqkh-JUwloE_Tr6N2fuDPC"
+clarifai_api = ClarifaiApi(CLARIFAI_APP_ID, CLARIFAI_APP_SECRET)  # assumes environment variables are set.
 
 
 def getContent():
